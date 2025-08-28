@@ -1,5 +1,6 @@
 use std::io;
 
+#[allow(unused)]
 pub fn find_factorial() -> usize {
     let mut input = String::new(); // create a mutable empty String
     println!("Number:");
