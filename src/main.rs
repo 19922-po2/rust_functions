@@ -4,6 +4,7 @@
 
 mod currency_fn;
 mod factorial_fn;
+mod geometry_fn;
 mod random_fn;
 mod string_fn;
 mod triangle_fn;
@@ -17,5 +18,9 @@ fn main() {
     //triangle_fn::asc_triangle();
     //random_fn::pick_random_fn();
     //string_fn::string_count_vowels_consonants();
-    string_fn::string_count_unscrambled();
+    //string_fn::string_count_unscrambled();
+    //geometry_fn::calc_circle_data();
+    //string_fn::recursive_backwards();
+    //string_fn::rot13();
+    string_fn::un_rot13();
 }
