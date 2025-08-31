@@ -6,6 +6,7 @@ mod currency_fn;
 mod factorial_fn;
 mod geometry_fn;
 mod random_fn;
+mod rust_sqlite;
 mod string_fn;
 mod triangle_fn;
 
@@ -22,5 +23,6 @@ fn main() {
     //geometry_fn::calc_circle_data();
     //string_fn::recursive_backwards();
     //string_fn::rot13();
-    string_fn::un_rot13();
+    //string_fn::un_rot13();
+    rust_sqlite::todo_list();
 }
