@@ -136,3 +136,36 @@ pub fn un_rot13() {
         Err(e) => println!("Error: {}", e),
     }
 }
+
+#[allow(unused)]
+pub fn xtml_converter(xtml: &str) -> String {
+    let mut out = String::new();
+    let mut in_tag = false;
+
+    for c in xtml.chars() {
+        match c {
+            '<' => in_tag = true,
+            '>' => in_tag = false,
+            _ if !in_tag => out.push(c),
+            _ => {}
+        }
+    }
+    let mut cleaned = String::new();
+    let mut last_was_space = false;
+
+    for c in out.chars() {
+        if c.is_whitespace() {
+            if !last_was_space {
+                cleaned.push(' ');
+                last_was_space = true;
+            }
+        } else {
+            cleaned.push(c);
+            last_was_space = false;
+        }
+    }
+
+    let result: String = cleaned.trim().to_string();
+    print!("{}", result);
+    result
+}
