@@ -6,6 +6,7 @@ mod currency_fn;
 mod factorial_fn;
 mod files_fn;
 mod geometry_fn;
+mod operations_fn;
 mod random_fn;
 mod rust_sqlite;
 mod string_fn;
@@ -27,5 +28,6 @@ fn main() {
     //string_fn::un_rot13();
     //rust_sqlite::todo_list();
     //string_fn::xtml_converter("<html><body><h1>Hello</h1><p>This is <b>bold</b> text.</p></body></html><div> :)</div>");
-    files_fn::move_file();
+    //files_fn::move_file();
+    operations_fn::min_op_to_zero();
 }

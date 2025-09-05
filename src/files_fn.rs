@@ -2,6 +2,7 @@ use std::fs;
 use std::io::{self, Write};
 use std::path::{Path, PathBuf};
 
+#[allow(unused)]
 pub fn move_file() {
     let mut src = String::new();
     let mut dst = String::new();
