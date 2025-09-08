@@ -29,5 +29,6 @@ fn main() {
     //rust_sqlite::todo_list();
     //string_fn::xtml_converter("<html><body><h1>Hello</h1><p>This is <b>bold</b> text.</p></body></html><div> :)</div>");
     //files_fn::move_file();
-    operations_fn::min_op_to_zero();
+    //operations_fn::min_op_to_zero();
+    operations_fn::convert_to_sum_of_two_no_zero();
 }
