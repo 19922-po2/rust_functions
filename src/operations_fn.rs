@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 /*
     You are given two integers num1 and num2.
     In one operation, you can choose integer i in the range [0, 60] and subtract 2i + num2 from num1.
@@ -27,7 +29,7 @@ pub fn min_op_to_zero() {
     }
 }
 
-/* 
+/*
     No-Zero integer is a positive integer that does not contain any 0 in its decimal representation.
     Given an integer n, return a list of two integers [a, b] where:
     a and b are No-Zero integers.
@@ -46,4 +48,36 @@ pub fn convert_to_sum_of_two_no_zero() {
     }
 }
 
+/*
+    You are given an integer n.
+    We need to group the numbers from 1 to n according to the sum of its digits. For example, the numbers 14 and 5 belong to the same group, whereas 13 and 3 belong to different groups.
+    Return the number of groups that have the largest size, i.e. the maximum number of elements.
+*/
+#[allow(unused)]
+pub fn count_largest_group() {
+    let n = 2;
 
+    let mut digit_sum_groups: HashMap<u32, u32> = HashMap::new();
+
+    // Group numbers by the sum of their digits
+    for num in 1..=n {
+        let digit_sum = sum_of_digits(num);
+        let count = digit_sum_groups.entry(digit_sum).or_insert(0);
+        *count += 1;
+    }
+
+    // Find the largest group size
+    let max_size = *digit_sum_groups.values().max().unwrap();
+
+    fn sum_of_digits(x: u32) -> u32 {
+        let mut sum = 0;
+        let mut num = x;
+        while num > 0 {
+            sum += num % 10;
+            num /= 10;
+        }
+        sum
+    }
+    // Count how many groups have the largest size
+    println!("{}", digit_sum_groups.values().filter(|&&count| count == max_size).count() as u32)
+}
