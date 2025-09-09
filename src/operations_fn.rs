@@ -79,5 +79,35 @@ pub fn count_largest_group() {
         sum
     }
     // Count how many groups have the largest size
-    println!("{}", digit_sum_groups.values().filter(|&&count| count == max_size).count() as u32)
+    println!(
+        "{}",
+        digit_sum_groups.values().filter(|&&count| count == max_size).count() as u32
+    )
 }
+
+/*
+    Given an integer n, return any array containing n unique integers such that they add up to 0.
+*/
+#[allow(unused)]
+pub fn sum_zero() {
+    let n = 7;
+    let mut res: Vec<i32> = Vec::new();
+
+    if n % 2 == 0 {
+        for x in 1..n / 2 + 1 {
+            res.push(x);
+            res.push(-x);
+        }
+    } else {
+        res.push(0);
+        for x in 1..n / 2 + 1 {
+            res.push(x);
+            res.push(-x);
+        }
+    }
+    println!("{:?}", res)
+}
+
+/* 
+
+*/
