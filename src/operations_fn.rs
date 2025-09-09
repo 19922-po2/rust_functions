@@ -113,7 +113,7 @@ pub fn sum_zero() {
 */
 #[allow(unused)]
 pub fn find_numbers() {
-    let nums = [555,901,482,1771];
+    let nums = [555, 901, 482, 1771];
     let mut res = 0;
 
     for x in 0..nums.len() {
@@ -124,4 +124,27 @@ pub fn find_numbers() {
     println!("{:?}", res);
 }
 
+/*
+    Given a list of dominoes, dominoes[i] = [a, b] is equivalent to dominoes[j] = [c, d] if and only if either (a == c and b == d),
+    or (a == d and b == c) - that is, one domino can be rotated to be equal to another domino.
+    Return the number of pairs (i, j) for which 0 <= i < j < dominoes.length, and dominoes[i] is equivalent to dominoes[j].
+*/
+#[allow(unused)]
+pub fn num_equiv_domino_pairs() {
+    let dominoes = [[1, 2], [1, 2], [1, 1], [1, 2], [2, 2]];
+    let mut res = 0;
 
+    for x in 0..dominoes.len() {
+        for y in x + 1..dominoes.len() {
+            if check_equality(dominoes[x], dominoes[y]) {
+                res += 1;
+            }
+        }
+    }
+
+    fn check_equality(i: [i32; 2], j: [i32; 2]) -> bool {
+        return i[0] == j[0] && i[1] == j[1] || i[0] == j[1] && i[1] == j[0];
+    }
+
+    println!("{:?}", res);
+}

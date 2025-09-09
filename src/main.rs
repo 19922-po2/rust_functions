@@ -33,5 +33,6 @@ fn main() {
     //operations_fn::convert_to_sum_of_two_no_zero();
     //operations_fn::count_largest_group();
     //operations_fn::sum_zero();
-    operations_fn::find_numbers();
+    //operations_fn::find_numbers();
+    operations_fn::num_equiv_domino_pairs();
 }
