@@ -105,9 +105,23 @@ pub fn sum_zero() {
             res.push(-x);
         }
     }
-    println!("{:?}", res)
+    println!("{:?}", res);
 }
 
-/* 
-
+/*
+    Given an array nums of integers, return how many of them contain an even number of digits.
 */
+#[allow(unused)]
+pub fn find_numbers() {
+    let nums = [555,901,482,1771];
+    let mut res = 0;
+
+    for x in 0..nums.len() {
+        if nums[x].to_string().len() % 2 == 0 {
+            res += 1;
+        }
+    }
+    println!("{:?}", res);
+}
+
+
