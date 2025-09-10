@@ -2,6 +2,7 @@
     Testing projects from: https://github.com/whostolemyhat/learning-projects
 */
 
+mod algorithms;
 mod currency_fn;
 mod factorial_fn;
 mod files_fn;
@@ -36,5 +37,6 @@ fn main() {
     //operations_fn::find_numbers();
     //operations_fn::num_equiv_domino_pairs2();
     //operations_fn::three_consecutive_odds();
-    operations_fn::find_even_numbers();
+    //operations_fn::find_even_numbers();
+    algorithms::binary_search(&[1, 3, 5, 7, 9, 11], 11);
 }
