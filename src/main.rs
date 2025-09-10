@@ -34,5 +34,5 @@ fn main() {
     //operations_fn::count_largest_group();
     //operations_fn::sum_zero();
     //operations_fn::find_numbers();
-    operations_fn::num_equiv_domino_pairs();
+    operations_fn::num_equiv_domino_pairs2();
 }

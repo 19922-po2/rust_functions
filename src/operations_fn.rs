@@ -130,7 +130,8 @@ pub fn find_numbers() {
     Return the number of pairs (i, j) for which 0 <= i < j < dominoes.length, and dominoes[i] is equivalent to dominoes[j].
 */
 #[allow(unused)]
-pub fn num_equiv_domino_pairs() {
+pub fn num_equiv_domino_pairs1() {
+    // brute force
     let dominoes = [[1, 2], [1, 2], [1, 1], [1, 2], [2, 2]];
     let mut res = 0;
 
@@ -147,4 +148,39 @@ pub fn num_equiv_domino_pairs() {
     }
 
     println!("{:?}", res);
+}
+
+pub fn num_equiv_domino_pairs2() {
+    //map
+    //let dominoes = [[1, 1], [2, 2], [1, 1], [1, 2], [1, 2], [1, 1]]; // output: 4
+    //let dominoes = [[1,2],[2,1],[3,4],[5,6]]; // output: 1
+    let dominoes = [[1, 2], [1, 2], [1, 1], [1, 2], [2, 2]]; // output: 3
+    //let dominoes = [[2,1],[1,2],[1,2],[1,2],[2,1],[1,1],[1,2],[2,2]];
+    let mut res = 0;
+    let mut map = HashMap::new();
+
+    for x in 0..dominoes.len() {
+        *map.entry(if &dominoes[x][0] >= &dominoes[x][1] {
+            [&dominoes[x][0], &dominoes[x][1]]
+        } else {
+            [&dominoes[x][1], &dominoes[x][0]]
+        })
+        .or_insert(0) += 1;
+    }
+
+    fn calc_pairs(elements: &i32) -> i32 {
+        if elements > &2 {
+            return (elements * (elements - 1)) / 2;
+        } else {
+            return 1;
+        };
+    }
+
+    let values: Vec<&i32> = map.values().filter(|&&v| v > 1).collect();
+    for v in 0..values.len() {
+        if values[v] > &1 {
+            res += calc_pairs(&values[v]);
+        }
+    }
+    println!("res: {:?}", res);
 }
