@@ -150,6 +150,7 @@ pub fn num_equiv_domino_pairs1() {
     println!("{:?}", res);
 }
 
+#[allow(unused)]
 pub fn num_equiv_domino_pairs2() {
     //map
     //let dominoes = [[1, 1], [2, 2], [1, 1], [1, 2], [1, 2], [1, 1]]; // output: 4
@@ -182,5 +183,79 @@ pub fn num_equiv_domino_pairs2() {
             res += calc_pairs(&values[v]);
         }
     }
+    println!("res: {:?}", res);
+}
+
+/*
+    Given an integer array arr, return true if there are three consecutive odd numbers in the array. Otherwise, return false.
+*/
+#[allow(unused)]
+pub fn three_consecutive_odds() {
+    let arr = [1, 2, 34, 3, 4, 5, 7, 23, 12];
+    let mut count = 0;
+
+    for x in 0..arr.len() {
+        if count >= 3 {
+            break;
+        }
+        if arr[x] % 2 != 0 {
+            count += 1
+        } else {
+            count = 0;
+        }
+    }
+
+    println!("res: {:?}", if count >= 3 { true } else { false });
+}
+
+/*
+    You are given an integer array digits, where each element is a digit. The array may contain duplicates.
+
+    You need to find all the unique integers that follow the given requirements:
+
+    The integer consists of the concatenation of three elements from digits in any arbitrary order.
+    The integer does not have leading zeros.
+    The integer is even.
+    For example, if the given digits were [1, 2, 3], integers 132 and 312 follow the requirements.
+
+    Return a sorted array of the unique integers.
+*/
+#[allow(unused)]
+pub fn find_even_numbers() {
+    let digits = [2, 1, 3, 0];
+    // results are within 100~999 - only evens
+    let mut res: Vec<i32> = Vec::new();
+
+    for x in (100..999).step_by(2) {
+        let digits_vec: Vec<i32> = x.to_string().chars().map(|c| c.to_digit(10).unwrap() as i32).collect();
+        let digits_array: [i32; 3] = digits_vec.try_into().expect("Wrong number of digits");
+
+        //println!("comparing: {:?} and {:?}", &digits_array, &digits);
+        if contains_all_with_counts(&digits, &digits_array) {
+            //println!("suscess: {:?}", x);
+            res.push(x);
+        }
+    }
+
+    fn contains_all_with_counts(first: &[i32], second: &[i32]) -> bool {
+        let mut counts = HashMap::new();
+
+        // Count occurrences in the first array
+        for &num in first {
+            *counts.entry(num).or_insert(0) += 1;
+        }
+        println!("occurrences: {:?}", counts);
+
+        // Check if the second array can be formed from the first
+        for &num in second {
+            let entry = counts.entry(num).or_insert(0);
+            if *entry == 0 {
+                return false; // not enough of this number
+            }
+            *entry -= 1; // use one occurrence
+        }
+        true
+    }
+
     println!("res: {:?}", res);
 }

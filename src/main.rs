@@ -34,5 +34,7 @@ fn main() {
     //operations_fn::count_largest_group();
     //operations_fn::sum_zero();
     //operations_fn::find_numbers();
-    operations_fn::num_equiv_domino_pairs2();
+    //operations_fn::num_equiv_domino_pairs2();
+    //operations_fn::three_consecutive_odds();
+    operations_fn::find_even_numbers();
 }
