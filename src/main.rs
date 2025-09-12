@@ -38,5 +38,6 @@ fn main() {
     //operations_fn::num_equiv_domino_pairs2();
     //operations_fn::three_consecutive_odds();
     //operations_fn::find_even_numbers();
-    algorithms::binary_search(&[1, 3, 5, 7, 9, 11], 11);
+    //algorithms::binary_search(&[1, 3, 5, 7, 9, 11], 11);
+    operations_fn::does_alice_win();
 }

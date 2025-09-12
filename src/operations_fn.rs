@@ -259,3 +259,93 @@ pub fn find_even_numbers() {
 
     println!("res: {:?}", res);
 }
+
+/*
+    Alice and Bob are playing a game on a string.
+
+    You are given a string s, Alice and Bob will take turns playing the following game where Alice starts first:
+
+    On Alice's turn, she has to remove any non-empty substring from s that contains an odd number of vowels.
+    On Bob's turn, he has to remove any non-empty substring from s that contains an even number of vowels.
+    The first player who cannot make a move on their turn loses the game. We assume that both Alice and Bob play optimally.
+
+    Return true if Alice wins the game, and false otherwise.
+
+    The English vowels are: a, e, i, o, and u.
+*/
+#[allow(unused)]
+pub fn does_alice_win() {
+    //let mut s = "leetcoder";
+    //let mut s = "bbcd";
+    //let mut s = "rriitv";
+    //let mut s = "sloalo";
+    //let mut s = "s";
+    let mut s = "riiwydol";
+    //let mut s = "bbcd";
+    let vowels: [char; 5] = ['a', 'e', 'i', 'o', 'u'];
+    let mut vowel_count = 0;
+    let mut second_to_last_vowel_index = 0;
+    let mut last_vowel_index = 0;
+    let mut turn = true; // alice
+
+    fn create_new_string(s: &str, index: usize) -> &str {
+        return &s[index + 1..];
+    }
+
+    while s.len() >= 1 {
+        for (i, char) in s.chars().enumerate() {
+            if vowels.contains(&char) {
+                vowel_count += 1;
+                second_to_last_vowel_index = last_vowel_index;
+                last_vowel_index = i;
+            }
+        }
+
+        /* println!(
+            "s: {:?}, vowel_count: {:?}, last_vowel_index: {:?}, second_to_last_vowel_index: {:?}, turn: {:?}",
+            s, vowel_count, last_vowel_index, second_to_last_vowel_index, turn
+        ); */
+
+        if vowel_count == 0 {
+            turn = false;
+            break;
+        }
+
+        if vowel_count % 2 != 0 {
+            turn = true;
+            break;
+        }
+
+        if turn {
+            if vowel_count == 1 {
+                break;
+            };
+            // alice turn
+            if vowel_count % 2 == 0 {
+                s = create_new_string(s, second_to_last_vowel_index);
+            } else {
+                s = create_new_string(s, last_vowel_index);
+            }
+        } else {
+            if vowel_count == 0 {
+                break;
+            };
+            // bob turn
+            if vowel_count % 2 == 0 {
+                s = create_new_string(s, last_vowel_index);
+            } else {
+                s = create_new_string(s, second_to_last_vowel_index);
+            }
+        }
+        if s.len() < 1 {
+            break;
+        };
+
+        vowel_count = 0;
+        last_vowel_index = 0;
+        second_to_last_vowel_index = 0;
+        turn = !turn;
+    }
+
+    println!("Result: {:?}", turn);
+}

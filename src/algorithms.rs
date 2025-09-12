@@ -1,3 +1,4 @@
+#[allow(unused)]
 pub fn binary_search(array: &[usize], element: usize) {
     let mut left_pointer: usize = 0;
     let mut right_pointer: usize = (array.len() - 1) as usize;
