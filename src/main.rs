@@ -7,6 +7,7 @@ mod currency_fn;
 mod factorial_fn;
 mod files_fn;
 mod geometry_fn;
+mod leetcode;
 mod operations_fn;
 mod random_fn;
 mod rust_sqlite;
@@ -39,5 +40,6 @@ fn main() {
     //operations_fn::three_consecutive_odds();
     //operations_fn::find_even_numbers();
     //algorithms::binary_search(&[1, 3, 5, 7, 9, 11], 11);
-    operations_fn::does_alice_win();
+    //operations_fn::does_alice_win();
+    leetcode::count_pairs();
 }
