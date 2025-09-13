@@ -41,5 +41,6 @@ fn main() {
     //operations_fn::find_even_numbers();
     //algorithms::binary_search(&[1, 3, 5, 7, 9, 11], 11);
     //operations_fn::does_alice_win();
-    leetcode::count_pairs();
+    //leetcode::count_pairs();
+    println!("{:?}", leetcode::count_and_say(4));
 }
