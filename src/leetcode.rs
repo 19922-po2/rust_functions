@@ -109,10 +109,11 @@ pub fn spellchecker(wordlist: Vec<String>, queries: Vec<String>) -> Vec<String> 
     }
 
     fn check_capitalisation(word: &String, wordlist: &Vec<String>) -> bool {
-        if wordlist.contains(&word.to_lowercase()) {
+        let wordlist_lower: Vec<String> = wordlist.iter().map(|w| w.to_lowercase()).collect();
+        if wordlist_lower.contains(&word.to_lowercase()) {
             return true;
         }
-        if wordlist.contains(&word.to_uppercase()) {
+        if wordlist_lower.contains(&word.to_uppercase()) {
             return true;
         }
         return false;
@@ -130,10 +131,12 @@ pub fn spellchecker(wordlist: Vec<String>, queries: Vec<String>) -> Vec<String> 
 
     fn check_vowels_errors(word: &String, wordlist: &Vec<String>) -> bool {
         for w in wordlist {
-            if w.chars()
+            if w.to_lowercase()
+                .chars()
                 .map(|c| if "aeiouAEIOU".contains(c) { '_' } else { c })
                 .collect::<String>()
                 == word
+                    .to_lowercase()
                     .chars()
                     .map(|c| if "aeiouAEIOU".contains(c) { '_' } else { c })
                     .collect::<String>()

@@ -58,8 +58,8 @@ fn main() {
     println!(
         "result:   {:?}",
         leetcode::spellchecker(
-            ["Yellow"].into_iter().map(String::from).collect(),
-            ["yellow"].into_iter().map(String::from).collect()
+            ["YellOw"].into_iter().map(String::from).collect(),
+            ["yollow"].into_iter().map(String::from).collect()
         )
     );
 }
