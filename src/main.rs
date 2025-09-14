@@ -42,5 +42,24 @@ fn main() {
     //algorithms::binary_search(&[1, 3, 5, 7, 9, 11], 11);
     //operations_fn::does_alice_win();
     //leetcode::count_pairs();
-    println!("{:?}", leetcode::count_and_say(4));
+    //println!("{:?}", leetcode::count_and_say(4));
+    /* println!(
+        "result:   {:?}",
+        leetcode::spellchecker(
+            ["KiTe", "kite", "hare", "Hare"].into_iter().map(String::from).collect(),
+            [
+                "kite", "Kite", "KiTe", "Hare", "HARE", "Hear", "hear", "keti", "keet", "keto"
+            ]
+            .into_iter()
+            .map(String::from)
+            .collect()
+        )
+    ); */
+    println!(
+        "result:   {:?}",
+        leetcode::spellchecker(
+            ["Yellow"].into_iter().map(String::from).collect(),
+            ["yellow"].into_iter().map(String::from).collect()
+        )
+    );
 }
