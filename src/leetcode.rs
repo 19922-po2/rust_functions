@@ -1,4 +1,4 @@
-//use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 /*
     Given a 0-indexed integer array nums of length n and an integer k,
     return the number of pairs (i, j) where 0 <= i < j < n, such that nums[i] == nums[j] and (i * j) is divisible by k.
@@ -90,10 +90,6 @@ pub fn count_and_say(n: i32) -> String {
 #[allow(unused)]
 pub fn spellchecker(wordlist: Vec<String>, queries: Vec<String>) -> Vec<String> {
     let mut result: Vec<String> = Vec::new();
-    /* println!(
-        "expected: {:?}",
-        ["kite", "KiTe", "KiTe", "Hare", "hare", "", "", "KiTe", "", "KiTe"]
-    ); */
 
     for querie in queries {
         if wordlist.contains(&querie) {
@@ -105,7 +101,6 @@ pub fn spellchecker(wordlist: Vec<String>, queries: Vec<String>) -> Vec<String> 
         } else {
             result.push("".to_string());
         }
-        //println!("result: {:?}", result)
     }
 
     fn check_capitalisation(word: &String, wordlist: &Vec<String>) -> bool {
@@ -125,7 +120,6 @@ pub fn spellchecker(wordlist: Vec<String>, queries: Vec<String>) -> Vec<String> 
                 return w.to_string();
             }
         }
-        /* println!("get_wordlist_word1: EMPTY"); */
         return "".to_string();
     }
 
@@ -159,13 +153,54 @@ pub fn spellchecker(wordlist: Vec<String>, queries: Vec<String>) -> Vec<String> 
                     .map(|c| if "aeiouAEIOU".contains(c) { '_' } else { c })
                     .collect::<String>()
             {
-                /* println!("get_wordlist_word1: {:?}", w.to_string()); */
                 return w.to_string();
             }
         }
-        /* println!("get_wordlist_word1: EMPTY"); */
         return "".to_string();
     }
 
     return result;
+}
+
+#[allow(unused)]
+pub fn spellchecker_optimized(wordlist: Vec<String>, queries: Vec<String>) -> Vec<String> {
+    let mut exact = HashSet::new();
+    let mut case_map = HashMap::new();
+    let mut vowel_map = HashMap::new();
+
+    fn devowel(s: &str) -> String {
+        s.chars()
+            .map(|c| match c.to_ascii_lowercase() {
+                'a' | 'e' | 'i' | 'o' | 'u' => '_',
+                other => other,
+            })
+            .collect()
+    }
+
+    for word in &wordlist {
+        exact.insert(word.clone());
+
+        let lower = word.to_ascii_lowercase();
+        case_map.entry(lower.clone()).or_insert(word.clone());
+
+        let dev = devowel(&lower);
+        vowel_map.entry(dev).or_insert(word.clone());
+    }
+
+    queries
+        .into_iter()
+        .map(|q| {
+            if exact.contains(&q) {
+                q
+            } else {
+                let lower = q.to_ascii_lowercase();
+                if let Some(ans) = case_map.get(&lower) {
+                    ans.clone()
+                } else {
+                    let dev = devowel(&lower);
+                    vowel_map.get(&dev).cloned().unwrap_or_default()
+                }
+            }
+        })
+        .collect()
 }

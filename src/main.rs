@@ -43,9 +43,9 @@ fn main() {
     //operations_fn::does_alice_win();
     //leetcode::count_pairs();
     //println!("{:?}", leetcode::count_and_say(4));
-    /* println!(
+    println!(
         "result:   {:?}",
-        leetcode::spellchecker(
+        leetcode::spellchecker_optimized(
             ["KiTe", "kite", "hare", "Hare"].into_iter().map(String::from).collect(),
             [
                 "kite", "Kite", "KiTe", "Hare", "HARE", "Hear", "hear", "keti", "keet", "keto"
@@ -54,12 +54,12 @@ fn main() {
             .map(String::from)
             .collect()
         )
-    ); */
-    println!(
+    );
+    /* println!(
         "result:   {:?}",
         leetcode::spellchecker(
             ["YellOw"].into_iter().map(String::from).collect(),
             ["yollow"].into_iter().map(String::from).collect()
         )
-    );
+    ); */
 }
