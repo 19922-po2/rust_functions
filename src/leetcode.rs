@@ -204,3 +204,22 @@ pub fn spellchecker_optimized(wordlist: Vec<String>, queries: Vec<String>) -> Ve
         })
         .collect()
 }
+
+/*
+    Given a string text of words separated by a single space (no leading or trailing spaces) and a string brokenLetters of all distinct letter keys that are broken,
+    return the number of words in text you can fully type using this keyboard.
+*/
+#[allow(unused)]
+pub fn can_be_typed_words(text: String, broken_letters: String) -> i32 {
+    let mut result = 0;
+    let words: Vec<&str> = text.split_whitespace().collect();
+    let letter_set: HashSet<char> = broken_letters.chars().collect();
+
+    for word in words {
+        if !(word.chars().any(|c| letter_set.contains(&c))) {
+            result += 1;
+        }
+    }
+
+    return result;
+}
