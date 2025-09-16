@@ -223,3 +223,44 @@ pub fn can_be_typed_words(text: String, broken_letters: String) -> i32 {
 
     return result;
 }
+
+/*
+    You are given an array of integers nums. Perform the following steps:
+
+    Find any two adjacent numbers in nums that are non-coprime.
+    If no such numbers are found, stop the process.
+    Otherwise, delete the two numbers and replace them with their LCM (Least Common Multiple).
+    Repeat this process as long as you keep finding two adjacent non-coprime numbers.
+    Return the final modified array. It can be shown that replacing adjacent non-coprime numbers in any arbitrary order will lead to the same result.
+
+    The test cases are generated such that the values in the final array are less than or equal to 108.
+
+    Two values x and y are non-coprime if GCD(x, y) > 1 where GCD(x, y) is the Greatest Common Divisor of x and y.
+*/
+#[allow(unused)]
+pub fn replace_non_coprimes(nums: Vec<i32>) -> Vec<i32> {
+    let mut stack: Vec<i32> = Vec::new();
+
+    for num in nums {
+        let mut curr = num;
+        while let Some(&last) = stack.last() {
+            let g = gcd(curr, last);
+            if g == 1 {
+                break;
+            }
+            stack.pop();
+            curr = lcm(curr, last);
+        }
+        stack.push(curr);
+    }
+
+    fn gcd(a: i32, b: i32) -> i32 {
+        if b == 0 { a } else { gcd(b, a % b) }
+    }
+
+    fn lcm(a: i32, b: i32) -> i32 {
+        (a / gcd(a, b)) * b
+    }
+
+    stack
+}

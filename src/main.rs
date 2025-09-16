@@ -62,8 +62,9 @@ fn main() {
             ["yollow"].into_iter().map(String::from).collect()
         )
     ); */
-    println!(
+    /* println!(
         "{:?}",
         leetcode::can_be_typed_words("hello world".to_string(), "ad".to_string())
-    );
+    ); */
+    println!("{:?}", leetcode::replace_non_coprimes(vec![6, 4, 3, 2, 7, 6, 2]));
 }
