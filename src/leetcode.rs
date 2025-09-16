@@ -264,3 +264,32 @@ pub fn replace_non_coprimes(nums: Vec<i32>) -> Vec<i32> {
 
     stack
 }
+
+/*
+    You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+
+    Merge nums1 and nums2 into a single array sorted in non-decreasing order.
+
+    The final sorted array should not be returned by the function, but instead be stored inside the array nums1.
+    To accommodate this, nums1 has a length of m + n, where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored.
+    nums2 has a length of n.
+*/
+#[allow(unused)]
+pub fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
+    for j in 0..nums2.len() {
+        for i in j..nums1.len() {
+            if nums2[j as usize] < nums1[i as usize] {
+                nums1.remove(nums1.len() - 1);
+                nums1.insert(i as usize, nums2[j as usize]);
+                break;
+            } else if i >= m as usize + j {
+                // else if nums1[i as usize] == 0
+                nums1.remove(i as usize);
+                nums1.insert(i as usize, nums2[j as usize]);
+                break;
+            }
+        }
+        println!("{:?}", nums1);
+    }
+    println!("nums1: {:?}", nums1);
+}
