@@ -335,3 +335,79 @@ pub fn max_freq_sum(s: String) -> i32 {
 
     return max_vowel_count + max_const_count;
 }
+
+/*
+    Given two binary strings a and b, return their sum as a binary string.
+*/
+#[allow(unused)]
+pub fn add_binary(a: String, b: String) -> String {
+    let mut result = "".to_string();
+
+    let mut rev_a: Vec<char> = a
+        .chars() /* .rev() */
+        .collect();
+    let mut rev_b: Vec<char> = b
+        .chars() /* .rev() */
+        .collect();
+    pad_start_with_zero(&mut rev_a, &mut rev_b);
+    let mut rev_a: Vec<char> = rev_a.into_iter().rev().collect();
+    let mut rev_b: Vec<char> = rev_b.into_iter().rev().collect();
+
+    let max = rev_a.len().max(rev_b.len());
+
+    let mut temp: i32 = 0;
+    for i in 0..max {
+        let ch: char = std::char::from_digit(
+            add(
+                rev_a[i].to_digit(10).unwrap(),
+                rev_b[i].to_digit(10).unwrap(),
+                &mut temp,
+            ),
+            10,
+        )
+        .unwrap_or('0');
+        result.push(ch);
+    }
+    if temp == 1 {
+        result.push('1');
+    }
+
+    fn add(a: u32, b: u32, temp: &mut i32) -> u32 {
+        if *temp == 0 {
+            if a + b == 2 {
+                *temp = 1;
+                return 0;
+            } else if a + b == 1 {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else if *temp == 1 {
+            if a + b == 2 {
+                return 1;
+            } else if a + b == 1 {
+                return 0;
+            } else {
+                *temp = 0;
+                return 1;
+            }
+        } else {
+            println!("else");
+            return 0;
+        }
+    }
+
+    fn pad_start_with_zero(a: &mut Vec<char>, b: &mut Vec<char>) {
+        let max_len = a.len().max(b.len());
+
+        while a.len() < max_len {
+            a.insert(0, '0');
+        }
+
+        while b.len() < max_len {
+            b.insert(0, '0');
+        }
+    }
+
+    return result.chars().rev().collect();
+}
