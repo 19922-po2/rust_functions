@@ -69,5 +69,6 @@ fn main() {
     //println!("{:?}", leetcode::replace_non_coprimes(vec![6, 4, 3, 2, 7, 6, 2]));
     /* leetcode::merge(&mut vec![1, 2, 3, 0, 0, 0], 3, &mut vec![2, 5, 6], 3) */
     /* println!("{:?}", leetcode::max_freq_sum("successes".to_string())); */
-    println!("{:?}", leetcode::add_binary("11".to_string(), "1".to_string()));
+    /* println!("{:?}", leetcode::add_binary("11".to_string(), "1".to_string())); */
+    println!("{:?}", leetcode::is_isomorphic("egg".to_string(), "add".to_string()));
 }

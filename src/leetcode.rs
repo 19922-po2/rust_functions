@@ -411,3 +411,41 @@ pub fn add_binary(a: String, b: String) -> String {
 
     return result.chars().rev().collect();
 }
+
+/*
+    Given two strings s and t, determine if they are isomorphic.
+    Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+    All occurrences of a character must be replaced with another character while preserving the order of characters.
+    No two characters may map to the same character, but a character may map to itself.
+*/
+#[allow(unused)]
+pub fn is_isomorphic(s: String, t: String) -> bool {
+    if s.len() != t.len() {
+        return false;
+    }
+
+    let mut s_to_t = HashMap::new();
+    let mut t_to_s = HashMap::new();
+
+    for (cs, ct) in s.chars().zip(t.chars()) {
+        // Check s -> t mapping
+        if let Some(&mapped) = s_to_t.get(&cs) {
+            if mapped != ct {
+                return false;
+            }
+        } else {
+            s_to_t.insert(cs, ct);
+        }
+
+        // Check t -> s mapping
+        if let Some(&mapped) = t_to_s.get(&ct) {
+            if mapped != cs {
+                return false;
+            }
+        } else {
+            t_to_s.insert(ct, cs);
+        }
+    }
+
+    true
+}
