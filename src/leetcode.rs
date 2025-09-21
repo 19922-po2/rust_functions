@@ -449,3 +449,27 @@ pub fn is_isomorphic(s: String, t: String) -> bool {
 
     true
 }
+
+/*
+    Given an integer array nums, return the number of subarrays of length 3 such that the sum of the first and third numbers equals exactly half of the second number.
+*/
+#[allow(unused)]
+pub fn count_subarrays(nums: Vec<i32>) -> i32 {
+    let mut result = 0;
+    let mut left_pointer = 0;
+    let mut right_pointer = 2;
+
+    while right_pointer < nums.len() {
+        if check_condition(nums[left_pointer], nums[right_pointer - 1], nums[right_pointer]) {
+            result += 1;
+        }
+        left_pointer += 1;
+        right_pointer += 1;
+    }
+
+    return result;
+
+    fn check_condition(first: i32, second: i32, third: i32) -> bool {
+        return (first + third) as f32 == second as f32 / 2.0;
+    }
+}
