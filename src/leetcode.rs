@@ -473,3 +473,23 @@ pub fn count_subarrays(nums: Vec<i32>) -> i32 {
         return (first + third) as f32 == second as f32 / 2.0;
     }
 }
+
+/*
+    You are given an array nums consisting of positive integers.
+    Return the total frequencies of elements in nums such that those elements all have the maximum frequency.
+    The frequency of an element is the number of occurrences of that element in the array.
+*/
+#[allow(unused)]
+pub fn max_frequency_elements(nums: Vec<i32>) -> i32 {
+    let mut result = 0;
+    let mut map = HashMap::new();
+
+    for num in nums {
+        *map.entry(num).or_insert(0) += 1;
+    }
+    if let Some(&max_val) = map.values().max() {
+        result = map.values().filter(|&&v| v == max_val).sum();
+    }
+
+    return result;
+}

@@ -71,5 +71,6 @@ fn main() {
     /* println!("{:?}", leetcode::max_freq_sum("successes".to_string())); */
     /* println!("{:?}", leetcode::add_binary("11".to_string(), "1".to_string())); */
     /* println!("{:?}", leetcode::is_isomorphic("egg".to_string(), "add".to_string())); */
-    println!("{:?}", leetcode::count_subarrays(vec!(-1, -4, -1, 4)));
+    /* println!("{:?}", leetcode::count_subarrays(vec!(-1, -4, -1, 4))); */
+    println!("{:?}", leetcode::max_frequency_elements(vec!(1, 2, 2, 3, 1, 4)));
 }
