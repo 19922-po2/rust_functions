@@ -493,3 +493,36 @@ pub fn max_frequency_elements(nums: Vec<i32>) -> i32 {
 
     return result;
 }
+
+/*
+    Given two version strings, version1 and version2, compare them. A version string consists of revisions separated by dots '.'.
+    The value of the revision is its integer conversion ignoring leading zeros.
+
+    To compare version strings, compare their revision values in left-to-right order. If one of the version strings has fewer revisions, treat the missing revision values as 0.
+
+    Return the following:
+
+    If version1 < version2, return -1.
+    If version1 > version2, return 1.
+    Otherwise, return 0.
+*/
+#[allow(unused)]
+pub fn compare_version(version1: String, version2: String) -> i32 {
+    let version1_nums: Vec<i32> = version1.split('.').map(|s| s.parse::<i32>().unwrap()).collect();
+
+    let version2_nums: Vec<i32> = version2.split('.').map(|s| s.parse::<i32>().unwrap()).collect();
+
+    let max_len = version1_nums.len().max(version2_nums.len());
+
+    for i in 0..max_len {
+        let v1 = *version1_nums.get(i).unwrap_or(&0);
+        let v2 = *version2_nums.get(i).unwrap_or(&0);
+
+        if v1 > v2 {
+            return 1;
+        } else if v1 < v2 {
+            return -1;
+        }
+    }
+    return 0;
+}
