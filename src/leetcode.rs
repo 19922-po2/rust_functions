@@ -526,3 +526,57 @@ pub fn compare_version(version1: String, version2: String) -> i32 {
     }
     return 0;
 }
+
+/*
+    Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.
+
+    If the fractional part is repeating, enclose the repeating part in parentheses.
+
+    If multiple answers are possible, return any of them.
+
+    It is guaranteed that the length of the answer string is less than 104 for all the given inputs.
+*/
+#[allow(unused)]
+pub fn fraction_to_decimal(numerator: i32, denominator: i32) -> String {
+    if numerator == 0 {
+        return "0".to_string();
+    }
+
+    let mut result = String::new();
+
+    // Handle sign
+    let negative = (numerator < 0) ^ (denominator < 0);
+    let (num, den) = ((numerator as i64).abs(), (denominator as i64).abs());
+    if negative {
+        result.push('-');
+    }
+
+    // Integer part
+    result.push_str(&(num / den).to_string());
+
+    let mut remainder = num % den;
+    if remainder == 0 {
+        return result;
+    }
+
+    result.push('.');
+
+    // Fractional part
+    let mut seen: HashMap<i64, usize> = HashMap::new();
+
+    while remainder != 0 {
+        if let Some(&pos) = seen.get(&remainder) {
+            result.insert(pos, '(');
+            result.push(')');
+            break;
+        }
+
+        seen.insert(remainder, result.len());
+
+        remainder *= 10;
+        result.push_str(&(remainder / den).to_string());
+        remainder %= den;
+    }
+
+    result
+}

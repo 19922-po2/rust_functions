@@ -73,5 +73,6 @@ fn main() {
     /* println!("{:?}", leetcode::is_isomorphic("egg".to_string(), "add".to_string())); */
     /* println!("{:?}", leetcode::count_subarrays(vec!(-1, -4, -1, 4))); */
     /* println!("{:?}", leetcode::max_frequency_elements(vec!(1, 2, 2, 3, 1, 4))); */
-    println!("{:?}", leetcode::compare_version("1.0.1".to_string(), "1".to_string()));
+    /* println!("{:?}", leetcode::compare_version("1.0.1".to_string(), "1".to_string())); */
+    println!("{:?}", leetcode::fraction_to_decimal(4, 333));
 }
