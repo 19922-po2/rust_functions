@@ -580,3 +580,48 @@ pub fn fraction_to_decimal(numerator: i32, denominator: i32) -> String {
 
     result
 }
+
+/*
+    You are given an integer array nums and a positive integer k.
+
+    Return the number of subarrays where the maximum element of nums appears at least k times in that subarray.
+
+    A subarray is a contiguous sequence of elements within an array.
+*/
+#[allow(unused)]
+pub fn count_subarrays_1(nums: Vec<i32>, k: i32) -> i64 {
+    let n = nums.len();
+    let mut ans: i64 = 0;
+
+    // Find the global maximum
+    let global_max = *nums.iter().max().unwrap();
+
+    // Collect indices of global_max
+    let mut idx = vec![];
+    for (i, &x) in nums.iter().enumerate() {
+        if x == global_max {
+            idx.push(i as i64);
+        }
+    }
+
+    if (idx.len() as i32) < k {
+        return 0; // not enough occurrences at all
+    }
+
+    // For each k-window of max indices
+    for j in 0..=idx.len() - (k as usize) {
+        let left_idx = idx[j];
+        let right_idx = idx[j + (k as usize) - 1];
+
+        // left choices
+        let prev = if j > 0 { idx[j - 1] } else { -1 };
+        let left_choices = left_idx - prev;
+
+        // right choices: can extend until the end of array
+        let right_choices = (n as i64) - right_idx;
+
+        ans += left_choices * right_choices;
+    }
+
+    ans
+}
