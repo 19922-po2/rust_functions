@@ -625,3 +625,32 @@ pub fn count_subarrays_1(nums: Vec<i32>, k: i32) -> i64 {
 
     ans
 }
+
+/*
+    Given an integer array nums, return the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle.
+*/
+#[allow(unused)]
+pub fn triangle_number(nums: Vec<i32>) -> i32 {
+    let mut mut_nums = nums;
+    mut_nums.sort(); // sort the array
+    let n = mut_nums.len();
+    let mut count = 0;
+
+    for k in (2..n).rev() {
+        // fix the largest side
+        let mut i = 0;
+        let mut j = k - 1;
+
+        while i < j {
+            if mut_nums[i] + mut_nums[j] > mut_nums[k] {
+                // all pairs (i..j-1, j) are valid
+                count += (j - i) as i32;
+                j -= 1;
+            } else {
+                i += 1;
+            }
+        }
+    }
+
+    count
+}

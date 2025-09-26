@@ -75,5 +75,6 @@ fn main() {
     /* println!("{:?}", leetcode::max_frequency_elements(vec!(1, 2, 2, 3, 1, 4))); */
     /* println!("{:?}", leetcode::compare_version("1.0.1".to_string(), "1".to_string())); */
     /* println!("{:?}", leetcode::fraction_to_decimal(4, 333)); */
-    println!("{:?}", leetcode::count_subarrays_1(vec!(1, 3, 2, 3, 3), 2));
+    /* println!("{:?}", leetcode::count_subarrays_1(vec!(1, 3, 2, 3, 3), 2)); */
+    println!("{:?}", leetcode::triangle_number(vec!(2, 2, 3, 4)));
 }
