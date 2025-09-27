@@ -76,5 +76,9 @@ fn main() {
     /* println!("{:?}", leetcode::compare_version("1.0.1".to_string(), "1".to_string())); */
     /* println!("{:?}", leetcode::fraction_to_decimal(4, 333)); */
     /* println!("{:?}", leetcode::count_subarrays_1(vec!(1, 3, 2, 3, 3), 2)); */
-    println!("{:?}", leetcode::triangle_number(vec!(2, 2, 3, 4)));
+    /* println!("{:?}", leetcode::triangle_number(vec!(2, 2, 3, 4))); */
+    println!(
+        "{:?}",
+        leetcode::largest_triangle_area(vec!(vec!(0, 0), vec!(0, 1), vec!(1, 0), vec!(0, 2), vec!(2, 0)))
+    );
 }
