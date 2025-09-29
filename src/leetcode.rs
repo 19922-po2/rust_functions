@@ -683,3 +683,27 @@ pub fn largest_triangle_area(points: Vec<Vec<i32>>) -> f64 {
 
     max_area
 }
+
+/*
+    Write a function to find the longest common prefix string amongst an array of strings.
+
+    If there is no common prefix, return an empty string "".
+*/
+pub fn longest_common_prefix(strs: Vec<String>) -> String {
+    if strs.is_empty() {
+        return String::new();
+    }
+
+    let mut prefix = strs[0].clone();
+
+    for s in strs.iter().skip(1) {
+        while !s.starts_with(&prefix) {
+            if prefix.is_empty() {
+                return String::new();
+            }
+            prefix.pop(); // remove last character
+        }
+    }
+
+    prefix
+}
