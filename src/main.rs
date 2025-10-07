@@ -81,8 +81,9 @@ fn main() {
         "{:?}",
         leetcode::largest_triangle_area(vec!(vec!(0, 0), vec!(0, 1), vec!(1, 0), vec!(0, 2), vec!(2, 0)))
     ); */
-    println!(
+    /* println!(
         "{:?}",
         leetcode::longest_common_prefix(vec!("flower".to_string(), "flow".to_string(), "flight".to_string()))
-    );
+    ); */
+    println!("{:?}", leetcode::remove_duplicates(&mut vec!(1, 1, 2)));
 }
